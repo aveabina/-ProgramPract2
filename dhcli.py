@@ -16,6 +16,8 @@ file = open('keys.txt','a+')
 file.write('\ Public key g: ' + str(g))
 file.write('\ Private key a: ' + str(a))
 file.write('\ Public key p: ' + str(p))
+file.close()
+
 
 A = pow(g, a) % p
 new_data[2] = str(A)
@@ -30,4 +32,3 @@ sock.close()
 
 print("Key > " + str(K))
 input("Done.")
-file.close()
