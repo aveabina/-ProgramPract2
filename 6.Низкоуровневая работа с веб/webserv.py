@@ -6,7 +6,7 @@ import threading
 from settings import cport, eport, dir, maxsize
 types = ['html', 'css', 'js', 'png', 'gif', 'jpeg'] 
 
-def request(conn, addr, data, dir):
+def GetWay(conn, addr, data, dir):
     msg = data.decode()
     print(msg)
     search = msg.split()[1][1:]
@@ -32,7 +32,8 @@ def request(conn, addr, data, dir):
 
     except FileNotFoundError:
         resp = f"""HTTP/1.1 404 Not Found
-	ERROR 404 """
+	ERROR 404
+	Date/Time> {date}"""
         with open("logs.txt", "a") as f:
             print("Error> 404", file=f)
 
@@ -41,7 +42,8 @@ def request(conn, addr, data, dir):
         decr = search.split(".")[-1]
         if decr not in types:
             resp = f"""HTTP/1.1 403 Access Denied 
-	    ERROR 403 """
+	    ERROR 403 
+	    Date/Time> {date}"""
             with open("logs.txt", "a") as f:
                 print("Error> 403", file=f)
         else:
@@ -66,11 +68,11 @@ def request(conn, addr, data, dir):
                 resp=c
     conn.send(resp)
 
-def connection(conn, addr, dir):
+def Connect(conn, addr, dir):
     data = conn.recv(maxsize)
     if not data:
         return
-    request(conn, addr, data, dir)
+    GetWay(conn, addr, data, dir)
     conn.close()
 
 sock = socket.socket()
@@ -85,6 +87,6 @@ conn, addr = sock.accept()
 
 while True:
     print("Client: ", addr, "\n")
-    tr = threading.Thread(target=connection, args=(conn, addr, dir))
+    tr = threading.Thread(target=Connect, args=(conn, addr, dir))
     tr.start()
     conn, addr = sock.accept()
