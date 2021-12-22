@@ -1,13 +1,12 @@
-from hashlib import sha256
-from uuid import uuid4
+from flask import Flask
 from datetime import date
 import json
 from pathlib import Path
-from flask import Flask
 from flask_restful import Api, Resource, abort, reqparse
+from hashlib import sha256
+from uuid import uuid4
 
 class JSONStorage:
-
     def __init__(self, filename):
         self._filename = Path(filename).resolve()
         if not self._filename.is_file():
