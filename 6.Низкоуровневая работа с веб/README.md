@@ -13,6 +13,8 @@ settings.py - файл настроек веб-сервера, в котором
 
 ![pp6 1](https://user-images.githubusercontent.com/91433112/144756904-b0e4344d-40c7-4527-9f11-dd3c0f9b9534.png)
 
+ДОП.ЗАДАНИЯ:
+
 При неправильном типе файла происходит переход на файл er403.html с ошибкой:
 
 ![pp6 2](https://user-images.githubusercontent.com/91433112/144756905-c3c2e12b-e6d9-4141-8cda-bb6afef6d9b9.png)
